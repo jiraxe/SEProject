@@ -83,17 +83,15 @@ public class StudentController {
 	}
 
 	@GetMapping("/register/{studentId}")
-	public ModelAndView getScheduleForRegistration(@PathVariable Long studentId){
+	public String getScheduleForRegistration(@PathVariable Long studentId,Model model){
 		Student student = studentService.findOne(studentId);
-		if(student.getSections().size()>0) return null;
+		if(student.getSections().size()>0)  return "register/list";
 		List<Block> blocks = blockService.findAll();
-		ModelAndView modelAndView = new ModelAndView();
 		Schedule schedule = new Schedule();
-		modelAndView.addObject("blocks", blocks);
-		modelAndView.addObject("schedule", schedule);
-		modelAndView.addObject("studentId",studentId);
-		modelAndView.setViewName("register/create");
-		return modelAndView;
+		model.addAttribute("blocks", blocks);
+		model.addAttribute("schedule", schedule);
+		model.addAttribute("studentId",studentId);
+		return "register/create";
 
 	}
 
@@ -104,7 +102,8 @@ public class StudentController {
 		Student student = studentService.findOne(studentId);
 		model.addAttribute("student",student);
 		HashMap<String,List<Section>> results = this.studentService.register(student,schedule.getSections());
-		if (results.size()>0) {
+
+		if (results.get("prerequisite").size()>1) {
 			model.addAttribute("errors", result.getAllErrors());
 			return "redirect:/student/register/"+studentId;
 		}

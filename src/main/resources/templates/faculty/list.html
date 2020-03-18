@@ -48,7 +48,7 @@
                                             });
                  -->
 				<tr class="datarow" th:each="faculty,iterStat : ${faculties}"
-					th:onclick="@{document.location='/faculty/{facultyId}'(facultyId=${faculty.facultyId})}">
+					th:onclick="@{document.location='/faculty/{userId}'(userId=${faculty.userId})}">
 					<!--                <tr class="datarow" th:each="faculty,iterStat : ${faculties}" th:onclick="@{document.location='#'}">-->
 					<th scope="row" th:text="${iterStat.count}+'.'">#</th>
 					<td th:text="${faculty.firstName}"></td>
@@ -56,8 +56,8 @@
 
 					<td th:text="${faculty.email}"></td>
 
-					<td><a th:href="@{'/faculty/' + ${faculty.facultyId}}">Edit</a>&nbsp;
-						<a th:href="@{'/faculty/delete/' + ${faculty.facultyId}}">Delete</a></td>
+					<td><a th:href="@{'/faculty/' + ${faculty.userId}}">Edit</a>&nbsp;
+						<a th:href="@{'/faculty/delete/' + ${faculty.userId}}">Delete</a></td>
 
 				</tr>
 

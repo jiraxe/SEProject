@@ -25,7 +25,7 @@ public class Section {
 	@OneToOne
 	private Faculty faculty;
 
-	@ManyToMany(mappedBy = "sections")
+	@ManyToMany(mappedBy = "sections",fetch = FetchType.EAGER)
 	private List<Student> students;
 
 

@@ -1,5 +1,6 @@
 package swe425.project.MIUScheduler.service.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -46,19 +47,22 @@ public class StudentServiceImpl implements StudentService {
 
 	@Override
 	public void delete(Long id) {
+		Student student = this.studentRepository.getOne(id);
+		student.getSections().stream().forEach(section-> section.setCapacity(section.getCapacity()+1));
+		student.setSections(new ArrayList<>());
+		this.studentRepository.save(student);
 		studentRepository.deleteById(id);
 	}
 	
 	@Override
 	public HashMap<String, List<Section>> register(Student student, List<Section> sectionList) {
 
-		List<Section> fullSectionList = this.sectionService.checkCapacity(sectionList);
 		List<Section> coursesMissingPrerequisite = this.courseService.checkPrerequisite(sectionList);
 		HashMap<String, List<Section>> infos = new HashMap<>();
-		infos.put("capacity",fullSectionList);
+
 		infos.put("prerequisite",coursesMissingPrerequisite);
 
-		if(fullSectionList.size()==0 && coursesMissingPrerequisite.size()==0)
+		if(coursesMissingPrerequisite.size()==0)
 		{
 			sectionList.forEach(section ->section.setCapacity(section.getCapacity()-1));
 			student.setSections(sectionList);
