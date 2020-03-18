@@ -46,12 +46,23 @@ public class SectionController {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("sections", sections);
 		modelAndView.addObject("size", sections.size());
-		
+	
 		modelAndView.setViewName("section/list");
 		
 		return modelAndView;
 	}
 
+	@RequestMapping(value = "/section/listFaculty", method = RequestMethod.GET)
+	public ModelAndView listFaculty() {
+		List<Section> sections = sectionService.findAll();
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("sections", sections);
+		modelAndView.addObject("size", sections.size());
+
+		modelAndView.setViewName("section/listFaculty");
+
+		return modelAndView;
+	}
 	@RequestMapping(value = "/section/new", method = RequestMethod.GET)
 	public String create(Model model) {
 		model.addAttribute("section", new Section());
