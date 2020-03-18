@@ -4,18 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import swe425.project.MIUScheduler.model.Block;
-import swe425.project.MIUScheduler.model.Location;
-import swe425.project.MIUScheduler.model.Section;
-import swe425.project.MIUScheduler.model.Course;
-import swe425.project.MIUScheduler.model.Faculty;
-import swe425.project.MIUScheduler.model.Student;
-import swe425.project.MIUScheduler.service.BlockService;
-import swe425.project.MIUScheduler.service.CourseService;
-import swe425.project.MIUScheduler.service.FacultyService;
-import swe425.project.MIUScheduler.service.LocationService;
-import swe425.project.MIUScheduler.service.SectionService;
-import swe425.project.MIUScheduler.service.StudentService;
+import swe425.project.MIUScheduler.model.*;
+import swe425.project.MIUScheduler.service.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -37,7 +27,8 @@ public class MiuSchedulerApplication implements CommandLineRunner {
 	LocationService locationService;
 	@Autowired
 	StudentService studentService;
-
+	@Autowired
+	LoginService loginService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(MiuSchedulerApplication.class, args);
@@ -56,6 +47,7 @@ public class MiuSchedulerApplication implements CommandLineRunner {
 		Section section1 = new Section(wCourse, jBlock, location, faculty, 50);
 		Section section2 = new Section(eCourse, fBlock, location, faculty, 50);
 		Student student = new Student("Mark", "ghatas", "mark@miu.edu");
+		Login login = new Login("Mark","1234");
 		studentService.save(student);
 		blockService.save(fBlock);
 		blockService.save(jBlock);
@@ -66,6 +58,7 @@ public class MiuSchedulerApplication implements CommandLineRunner {
 		facultyService.save(faculty);
 		sectionService.save(section1);
 		sectionService.save(section2);
+		loginService.save(login);
 		List<Section> list = new ArrayList();
 		list.add(section1);
 		list.add(section2);
