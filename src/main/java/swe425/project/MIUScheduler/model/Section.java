@@ -22,7 +22,6 @@ public class Section {
 	private Course course;
 
 	@OneToOne
-
 	private Block block;
 
 	@OneToOne
@@ -35,7 +34,6 @@ public class Section {
 	private List<Student> students;
 
 
-	@NotNull
 	private Integer capacity;
 
 	public Section(Course course, Block block, Location location, Faculty faculty, Integer capacity) {	
