@@ -14,10 +14,10 @@
     <title>MIU Scheduler</title>
 </head>
 <body>
-<span th:if="faculty">
+<span th:if="${faculty}">
     <div th:replace="fragments/headerFaculty :: header"></div>
 </span>
-<span th:if="admin">
+<span th:if="${admin}">
     <div th:replace="fragments/header :: header"></div>
 </span>
     <div class="container" style="margin-top: 2em;">

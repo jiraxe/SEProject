@@ -7,13 +7,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class HomeController {
-
-
 	@RequestMapping(value="/home/index", method = RequestMethod.GET)
 	public String home(Model model){
-		model.addAttribute("admin",false);
-		model.addAttribute("faculty",true);
-
+		model.addAttribute("admin",true);
+		model.addAttribute("faculty",false);
 		return "home/index";
 	}
 }
