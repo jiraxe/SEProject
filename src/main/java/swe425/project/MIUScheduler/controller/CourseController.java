@@ -35,9 +35,12 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = "/course/new", method = RequestMethod.GET)
-	public String create(Model model) {
-		model.addAttribute("course", new Course());
-		return "course/new";
+	public ModelAndView create() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("course", new Course());
+		modelAndView.addObject("prerequisites",this.courseService.findAll());
+		modelAndView.setViewName("course/new");
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/course/new", method = RequestMethod.POST)
@@ -52,9 +55,13 @@ public class CourseController {
 	}
 
 	@GetMapping(value = "/course/{courseId}")
-	public String view(@PathVariable Integer courseId, Model model) {
-		model.addAttribute("course", courseService.findOne(courseId));
-		return "course/edit";
+	public ModelAndView create(@PathVariable Integer courseId) {
+
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("course", this.courseService.findOne(courseId));
+		modelAndView.addObject("prerequisites",this.courseService.findAll());
+		modelAndView.setViewName("course/edit");
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/course/delete/{id}", method = RequestMethod.GET)

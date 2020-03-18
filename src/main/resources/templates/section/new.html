@@ -48,10 +48,11 @@
 							<div class="form-group">
 								<label for="block">Block</label> <span
 									th:if="${#fields.hasErrors('block')}"
-									th:errors="*{block}" class="alert alert-danger"></span> <select name="block" id="block" class="form-control" required="required">
+									th:errors="*{block}" class="alert alert-danger"></span>
+								<select name="block" id="block" class="form-control" required="required">
                                     <option value="">Select a block</option>
-                                    <option th:if="${section.block == null}" th:each="block : ${blocks}" th:value="${block.blockId}" th:text="${block.start_date}"></option>
-                                    <option th:if="${section.block != null}" th:each="block : ${blocks}" th:value="${block.blockId}" th:text="${block.start_date}" th:selected="${block.blockId == section.block.blockId}"></option>
+                                    <option th:if="${section.block == null}" th:each="block : ${blocks}" th:value="${block.blockId}" th:text="${block.blockTittle}"></option>
+                                    <option th:if="${section.block != null}" th:each="block : ${blocks}" th:value="${block.blockId}" th:text="${block.blockTittle}" th:selected="${block.blockId == section.block.blockId}"></option>
                                 </select>
 							</div>
 							
@@ -60,8 +61,8 @@
 									th:if="${#fields.hasErrors('location')}"
 									th:errors="*{location}" class="alert alert-danger"></span> <select name="location" id="location" class="form-control" required="required">
                                     <option value="">Select a location</option>
-                                    <option th:if="${section.location == null}" th:each="location : ${locations}" th:value="${location.locationId}" th:text="${location.building}"></option>
-                                    <option th:if="${section.location != null}" th:each="location : ${locations}" th:value="${location.locationId}" th:text="${location.building}" th:selected="${location.locationId == section.location.locationId}"></option>
+                                    <option th:if="${section.location == null}" th:each="location : ${locations}" th:value="${location.locationId}" th:text="${location.building+' '+location.roomNumber}"></option>
+                                    <option th:if="${section.location != null}" th:each="location : ${locations}" th:value="${location.locationId}" th:text="${location.building+' '+location.roomNumber}" th:selected="${location.locationId == section.location.locationId}"></option>
                                 </select>
 							</div>
 							

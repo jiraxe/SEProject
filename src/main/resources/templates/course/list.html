@@ -34,7 +34,7 @@
 				<tr>
 					<th scope="col">#</th>
 					<th scope="col">courseTitle</th>
-					
+					<th scope="col">prerequisite</th>
 		
 					<th scope="col">Actions</th>
 
@@ -52,6 +52,8 @@
 					<!--                <tr class="datarow" th:each="course,iterStat : ${courses}" th:onclick="@{document.location='#'}">-->
 					<th scope="row" th:text="${iterStat.count}+'.'">#</th>
 					<td th:text="${course.courseTitle}"></td>
+					<td th:if="${course.prerequisite == null}"></td>
+					<td th:if="${course.prerequisite != null}" th:text="${course?.prerequisite.courseTitle}"></td>
 					
 
 
