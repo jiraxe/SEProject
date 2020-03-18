@@ -2,27 +2,21 @@ package swe425.project.MIUScheduler.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-@Table(name = "students")
 public class Student extends User{
+	public static Student currentUser;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long studentId;
 
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private List<Section> sections = new ArrayList<>();
 
 	public Student(String firstName, String lastName, String email) {
@@ -99,4 +93,7 @@ public class Student extends User{
 		this.sections = sections;
 	}
 
+	public void addSection(Section section) {
+		this.sections.add(section);
+	}
 }

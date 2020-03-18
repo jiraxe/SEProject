@@ -1,5 +1,6 @@
 package swe425.project.MIUScheduler.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -16,7 +17,7 @@ public class Schedule {
 	private Long scheduleId;
 
 	@OneToMany
-	private List<Section> sections;
+	private List<Section> sections = new ArrayList<>();
 
 	public Long getScheduleId() {
 		return scheduleId;

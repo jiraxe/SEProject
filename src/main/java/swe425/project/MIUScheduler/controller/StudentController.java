@@ -1,6 +1,7 @@
 package swe425.project.MIUScheduler.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -17,24 +18,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import swe425.project.MIUScheduler.model.Block;
+import swe425.project.MIUScheduler.model.Schedule;
 import swe425.project.MIUScheduler.model.Section;
 import swe425.project.MIUScheduler.model.Student;
+import swe425.project.MIUScheduler.service.BlockService;
 import swe425.project.MIUScheduler.service.SectionService;
 import swe425.project.MIUScheduler.service.StudentService;
 
 @Controller
+@RequestMapping("/student")
 public class StudentController {
 
 	private StudentService studentService;
 	private SectionService sectionService;
+	private BlockService blockService;
+
 
 	@Autowired
-	public StudentController(StudentService studentService,SectionService sectionService) {
+	public StudentController(StudentService studentService,SectionService sectionService, BlockService blockService) {
 		this.studentService = studentService;
 		this.sectionService = sectionService;
+		this.blockService = blockService;
 	}
 
-	@RequestMapping(value = "/student/list", method = RequestMethod.GET)
+	@GetMapping("/list")
 	public ModelAndView students() {
 		List<Student> students = studentService.findAll();
 		ModelAndView modelAndView = new ModelAndView();
@@ -44,13 +52,13 @@ public class StudentController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/student/new", method = RequestMethod.GET)
+	@GetMapping("/new")
 	public String create(Model model) {
 		model.addAttribute("student", new Student());
 		return "student/new";
 	}
 
-	@RequestMapping(value = "/student/new", method = RequestMethod.POST)
+	@PostMapping("/new")
 	public String edit(@Valid @ModelAttribute("student") Student student, BindingResult result, Model model) {
 
 		if (result.hasErrors()) {
@@ -61,37 +69,54 @@ public class StudentController {
 		return "redirect:/student/list";
 	}
 
-	@GetMapping(value = "/student/{studentId}")
+	@GetMapping(value = "/{studentId}")
 	public String view(@PathVariable Long studentId, Model model) {
 		model.addAttribute("student", studentService.findOne(studentId));
 		return "student/edit";
 	}
 
-	@RequestMapping(value = "/student/delete/{id}", method = RequestMethod.GET)
+	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id, Model model) {
 		studentService.delete(id);
 		return "redirect:/student/list";
 
 	}
 
-	@GetMapping(value="/register")
-	public ModelAndView getScheduleForRegistration(){
-		List<Section> sections = sectionService.findAll();
+	@GetMapping("/register/{studentId}")
+	public ModelAndView getScheduleForRegistration(@PathVariable Long studentId){
+		Student student = studentService.findOne(studentId);
+		if(student.getSections().size()>0) return null;
+		List<Block> blocks = blockService.findAll();
 		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.addObject("sections", sections);
-		modelAndView.addObject("selected", new ArrayList<Section>());
-		modelAndView.setViewName("student/register");
+		Schedule schedule = new Schedule();
+		modelAndView.addObject("blocks", blocks);
+		modelAndView.addObject("schedule", schedule);
+		modelAndView.addObject("studentId",studentId);
+		modelAndView.setViewName("register/create");
 		return modelAndView;
+
 	}
-	@PostMapping(value = "/register")
-	public String postScheduleForRegistration(@Valid @ModelAttribute("student") Student student,
+
+	@PostMapping(value = "/register/{studentId}")
+	public String postScheduleForRegistration(@PathVariable Long studentId,@ModelAttribute("schedule")  Schedule schedule ,
 					   BindingResult result, Model model)  {
 
-		if (result.hasErrors()) {
+		Student student = studentService.findOne(studentId);
+		model.addAttribute("student",student);
+		HashMap<String,List<Section>> results = this.studentService.register(student,schedule.getSections());
+		if (results.size()>0) {
 			model.addAttribute("errors", result.getAllErrors());
-			return "student/edit";
+			return "redirect:/student/register/"+studentId;
 		}
-		student = studentService.save(student);
-		return "redirect:/student/list";
+		this.studentService.save(student);
+		return "redirect:/student/register/list/"+studentId;
+	}
+
+	@GetMapping(value = "/register/list/{studentId}")
+	public String showEnrolledSections(@PathVariable Long studentId,Model model) {
+		Student student = this.studentService.findOne(studentId);
+		model.addAttribute("student",student);
+
+	return "register/list";
 	}
 }

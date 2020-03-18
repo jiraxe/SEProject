@@ -33,6 +33,7 @@
 			<thead>
 				<tr>
 					<th scope="col">#</th>
+					<th scope="col">tittle</th>
 					<th scope="col">start_date</th>
 					<th scope="col">end_date</th>
 		
@@ -51,6 +52,7 @@
 					th:onclick="@{document.location='/block/{blockId}'(blockId=${block.blockId})}">
 					<!--                <tr class="datarow" th:each="block,iterStat : ${blocks}" th:onclick="@{document.location='#'}">-->
 					<th scope="row" th:text="${iterStat.count}+'.'">#</th>
+					<td th:text="${block.blockTittle}"></td>
 					<td th:text="${block.start_date}"></td>
 					<td th:text="${block.end_date}"></td>
 

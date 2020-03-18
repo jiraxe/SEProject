@@ -46,33 +46,5 @@ public class MiuSchedulerApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		Block jBlock = new Block("January 2020", LocalDate.of(2020,1,5),LocalDate.of(2020,1,29));
-		Block fBlock = new Block("Fabruary 2020", LocalDate.of(2020,1,30),LocalDate.of(2020,2,25));
-		Faculty faculty = new Faculty("oussama", "jablaoui", "OJablaoui@mum.edu");
-		Course wCourse = new Course("Web Programming");
-		Course eCourse = new Course("Enterprise Architecture");
-		eCourse.setPrerequisite(wCourse);
-		Location location = new Location("Verill Hall", "143");
-		Section section1 = new Section(wCourse, jBlock, location, faculty, 50);
-		Section section2 = new Section(eCourse, fBlock, location, faculty, 50);
-		Student student = new Student("Mark", "ghatas", "mark@miu.edu");
-		studentService.save(student);
-		blockService.save(fBlock);
-		blockService.save(jBlock);
-		facultyService.save(faculty);
-		locationService.save(location);
-		courseService.save(wCourse);
-		courseService.save(eCourse);
-		facultyService.save(faculty);
-		sectionService.save(section1);
-		sectionService.save(section2);
-		List<Section> list = new ArrayList();
-		list.add(section1);
-		list.add(section2);
-		HashMap<String, List<Section>> result = studentService.register(student, list);
-		
-		
-		
-		
 	}
 }

@@ -69,14 +69,22 @@ public class SectionController {
 			model.addAttribute("errors", result.getAllErrors());
 			return "section/new";
 		}
+		section.setCapacity(50);
 		section = sectionService.save(section);
 		return "redirect:/section/list";
 	}
 
 	@GetMapping(value = "/section/{sectionId}")
-	public String view(@PathVariable Integer sectionId, Model model) {
-		model.addAttribute("section", sectionService.findOne(sectionId));
-		return "section/edit";
+	public ModelAndView view(@PathVariable Integer sectionId) {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.addObject("section", new Section());
+		modelAndView.addObject("courses", courseService.findAll());
+		modelAndView.addObject("blocks", blockService.findAll());
+		modelAndView.addObject("faculties", facultyService.findAll());
+		modelAndView.addObject("locations", locationService.findAll());
+		modelAndView.addObject("section", sectionService.findOne(sectionId));
+		modelAndView.setViewName("section/edit");
+		return modelAndView;
 	}
 
 	@RequestMapping(value = "/section/delete/{id}", method = RequestMethod.GET)

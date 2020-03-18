@@ -1,12 +1,10 @@
 package swe425.project.MIUScheduler.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -29,7 +27,10 @@ public class Block {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(unique = true)
 	private LocalDate end_date;
-	
+
+	@OneToMany(mappedBy = "block")
+	List<Section> sectionList = new ArrayList<>();
+
 	@Override
 	public String toString() {
 		return blockTitle;
@@ -73,6 +74,22 @@ public class Block {
 		this.start_date = start_date;
 		this.end_date = end_date;
 		this.blockTitle = blockTittle;
+	}
+
+	public String getBlockTitle() {
+		return blockTitle;
+	}
+
+	public void setBlockTitle(String blockTitle) {
+		this.blockTitle = blockTitle;
+	}
+
+	public List<Section> getSectionList() {
+		return sectionList;
+	}
+
+	public void setSectionList(List<Section> sectionList) {
+		this.sectionList = sectionList;
 	}
 
 	public Block() {

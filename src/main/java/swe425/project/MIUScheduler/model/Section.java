@@ -2,12 +2,7 @@ package swe425.project.MIUScheduler.model;
 
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -21,8 +16,7 @@ public class Section {
 	@OneToOne
 	private Course course;
 
-	@OneToOne
-
+	@ManyToOne
 	private Block block;
 
 	@OneToOne
@@ -35,7 +29,7 @@ public class Section {
 	private List<Student> students;
 
 
-	@NotNull
+
 	private Integer capacity;
 
 	public Section(Course course, Block block, Location location, Faculty faculty, Integer capacity) {	

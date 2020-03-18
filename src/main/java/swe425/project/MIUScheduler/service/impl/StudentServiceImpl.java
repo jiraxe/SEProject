@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import swe425.project.MIUScheduler.model.Section;
@@ -15,18 +16,19 @@ import swe425.project.MIUScheduler.service.StudentService;
 
 
 
-@Service("studentService")
+@Service
 public class StudentServiceImpl implements StudentService {
 
+
 	@Autowired
-	StudentRepository studentRepository;
-	
+	private StudentRepository studentRepository;
+
 	@Autowired
 	SectionService sectionService;
 
 	@Autowired
 	private CourseService courseService;
-	
+
 	@Override
 	public List<Student> findAll() {
 		return studentRepository.findAll();
