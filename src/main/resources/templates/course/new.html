@@ -41,7 +41,7 @@
 								<label for="prerequisite">Prerequisite</label> <span
 									th:if="${#fields.hasErrors('prerequisite')}"
 									th:errors="*{prerequisite}" class="alert alert-danger"></span>
-								<select name="prerequisite" id="prerequisite" class="form-control" required="required">
+								<select name="prerequisite" id="prerequisite" class="form-control">
 									<option value="">Select a prerequisite</option>
 									<option th:if="${course.prerequisite == null}" th:each="prerequisite : ${prerequisites}" th:value="${prerequisite.courseId}" th:text="${prerequisite.courseTitle}"></option>
 									<option th:if="${course.prerequisite != null}" th:each="prerequisite : ${prerequisites}" th:value="${prerequisite.courseId}" th:text="${prerequisite.courseTitle}" th:selected="${prerequisite.courseId == course.prerequisite.courseId}"></option>

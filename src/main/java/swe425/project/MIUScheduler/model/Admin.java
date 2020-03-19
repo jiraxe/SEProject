@@ -10,16 +10,7 @@ import javax.validation.constraints.NotEmpty;
 public class Admin extends User {
 	
 
-	@Column(unique = true)
-	public Long adminId;
 
-	public Long getadminId() {
-		return adminId;
-	}
-
-	public void setadminId(Long adminId) {
-		this.adminId = adminId;
-	}
 
 
 	public Admin(){

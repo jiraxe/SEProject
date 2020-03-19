@@ -22,7 +22,7 @@ public class Section {
 	@OneToOne
 	private Location location;
 
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	private Faculty faculty;
 
 	@ManyToMany(mappedBy = "sections",fetch = FetchType.EAGER)

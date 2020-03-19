@@ -6,20 +6,12 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
 @Entity
-public class Faculty extends  User{
+public class Faculty extends User{
 
 
-	@Column(unique = true)
-	private Long facultyId;
 
-	public Long getFacultyId() {
-		return facultyId;
-	}
-
-	public void setFacultyId(Long id) {
-		this.facultyId = id;
-	}
-	public Faculty(){
+	public Faculty() {
+		super();
 
 	}
 
@@ -35,6 +27,7 @@ public class Faculty extends  User{
 				   String username, String password) {
 		super(firstName, lastName, email, username, password);
 	}
+
 
 
 
