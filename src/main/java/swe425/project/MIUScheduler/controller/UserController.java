@@ -20,17 +20,27 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(value = {"/login","/"})
+    @GetMapping(value = {"/"})
+    public String displayHomeFrom(Model model) {
+        model.addAttribute("login", new User());
+
+        System.out.println("Inside GETMQPPING");
+
+        return "home";
+    }
+    @GetMapping(value = {"/login"})
     public String displayLoginForm(Model model) {
         model.addAttribute("login", new User());
+
         return "login";
     }
 
-    @PostMapping(value = {"/login","/"})
+    @PostMapping("/login")
     public String verify(@ModelAttribute("login") User login, HttpSession session){
         User verified  = userService.verify(login);
         if(verified == null){
             return "login";
+
         }
         else if(verified instanceof Student){
             session.setAttribute("role","student");
@@ -41,8 +51,11 @@ public class UserController {
         else{
             session.setAttribute("role","admin");
         }
-        session.setAttribute("userId", verified.getUserId());
-        return "redirect:/home/index";
+        session.setAttribute("userId",verified.getUserId());
+        System.out.println(verified.getUserId());
+
+        System.out.println(session.getAttribute("userId"));
+        return "redirect:/home/";
 
     }
 }

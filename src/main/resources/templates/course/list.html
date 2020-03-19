@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+	  xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,10 +24,14 @@
 	<div class="container" style="margin-top: 2em;">
 		<div>
 			<span style="font-size: 1.5em">List of Courses</span> <span
-				style="float: right;"> <a
-				class="btn btn-outline-primary btn-lg" href="/course/new">Add a
+				style="float: right;">
+
+
+                  <a sec:authorize="hasRole('ADMIN')" class="btn btn-outline-primary btn-lg" href="/course/new">Add a
 					New Course</a>
+
 			</span>
+
 		</div>
 		<p>&nbsp;</p>
 		<table class="table table-hover">
@@ -36,7 +41,7 @@
 					<th scope="col">courseTitle</th>
 					<th scope="col">prerequisite</th>
 		
-					<th scope="col">Actions</th>
+					<th sec:authorize="hasRole('ADMIN')" scope="col">Actions</th>
 
 				</tr>
 			</thead>
@@ -47,8 +52,7 @@
                                                 document.location = $(this).data('href');
                                             });
                  -->
-				<tr class="datarow" th:each="course,iterStat : ${courses}"
-					th:onclick="@{document.location='/course/{courseId}'(courseId=${course.courseId})}">
+				<tr class="datarow" th:each="course,iterStat : ${courses}">
 					<!--                <tr class="datarow" th:each="course,iterStat : ${courses}" th:onclick="@{document.location='#'}">-->
 					<th scope="row" th:text="${iterStat.count}+'.'">#</th>
 					<td th:text="${course.courseTitle}"></td>
@@ -57,7 +61,7 @@
 					
 
 
-					<td><a th:href="@{'/course/' + ${course.courseId}}">Edit</a>&nbsp;
+					<td sec:authorize="hasRole('ADMIN')"><a th:href="@{'/course/' + ${course.courseId}}">Edit</a>&nbsp;
 						<a th:href="@{'/course/delete/' + ${course.courseId}}">Delete</a></td>
 
 				</tr>

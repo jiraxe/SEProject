@@ -1,8 +1,12 @@
 package swe425.project.MIUScheduler.model;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+
+
 
 
 @Entity
@@ -10,9 +14,9 @@ import javax.validation.constraints.NotEmpty;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public  class User {
 
+    public static User currentUser;
     @Id@GeneratedValue(strategy = GenerationType.TABLE)
     protected Long userId;
-
     public Long getUserId() {
         return userId;
     }
@@ -36,7 +40,7 @@ public  class User {
 
 
     public String username;
-    public String password;
+    public String password ;
 
     public String getUsername() {
         return username;
@@ -90,6 +94,8 @@ public  class User {
         this.password = password;
     }
     public User(){
+        BCryptPasswordEncoder BCryptPasswordEncoder = new BCryptPasswordEncoder();
+        this.password = BCryptPasswordEncoder.encode("123");
 
     }
 

@@ -14,7 +14,7 @@ public class Admin extends User {
 
 
 	public Admin(){
-
+	super();
 	}
 
 	public Admin(@NotEmpty(message = "*Please provide first name") String firstName,
