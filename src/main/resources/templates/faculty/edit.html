@@ -18,8 +18,16 @@
 <title>MIU Scheduler</title>
 </head>
 <body>
-	<div th:replace="fragments/header :: header"></div>
 
+	<span th:if="${facultyrole}">
+    <div th:replace="fragments/headerFaculty :: header"></div>
+</span>
+	<span th:if="${student}">
+    <div th:replace="fragments/headerStudent :: header"></div>
+</span>
+	<span th:if="${admin}">
+    <div th:replace="fragments/header :: header"></div>
+</span>
 	<div class="container" style="margin-top: 2em;">
 		<form id="facultyForm" method="POST" action="/faculty/new"
 			th:object="${faculty}">
@@ -64,9 +72,11 @@
 
 
 							<div style="float: right;">
-								
-								<a href="/faculty/list" class="btn btn-outline-warning"
-									style="margin-right: 2em;">Cancel</a>
+									<span th:if="${admin}">
+<a href="/faculty/list" class="btn btn-outline-warning"
+   style="margin-right: 2em;">Cancel</a></span>
+
+
 								<button id="btnSubmit" type="submit"
 									class="btn btn-outline-primary">Edit Faculty</button>
 							</div>

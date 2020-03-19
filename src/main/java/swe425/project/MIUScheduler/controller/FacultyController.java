@@ -2,6 +2,7 @@ package swe425.project.MIUScheduler.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,16 +26,26 @@ public class FacultyController {
 	private FacultyService facultyService;
 
 	@RequestMapping(value = "/faculty/list", method = RequestMethod.GET)
-	public ModelAndView faculties() {
+	public ModelAndView faculties(HttpSession session) {
 		List<Faculty> faculties = facultyService.findAll();
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("faculties", faculties);
 		modelAndView.addObject("size", faculties.size());
+		if (session.getAttribute("role") =="student")
+		{
+			modelAndView.addObject("student",true);
+		}
+		else if (session.getAttribute("role") =="faculty"){
+			modelAndView.addObject("facultyrole",true);
+		}
+		else{
+			modelAndView.addObject("admin",true);
+		}
 		modelAndView.setViewName("faculty/list");
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/faculty/new", method = RequestMethod.GET)
+	@RequestMapping(value = "/faculty/new", method = RequestMethod.GET )
 	public String create(Model model) {
 		model.addAttribute("faculty", new Faculty());
 		return "faculty/new";
@@ -52,7 +63,17 @@ public class FacultyController {
 	}
 
 	@GetMapping(value = "/faculty/{facultyId}")
-	public String view(@PathVariable Long facultyId, Model model) {
+	public String view(@PathVariable Long facultyId, Model model, HttpSession session) {
+		if (session.getAttribute("role") =="student")
+		{
+			model.addAttribute("student",true);
+		}
+		else if (session.getAttribute("role") =="faculty"){
+			model.addAttribute("facultyrole",true);
+		}
+		else{
+			model.addAttribute("admin",true);
+		}
 		model.addAttribute("faculty", facultyService.findOne(facultyId));
 		return "faculty/edit";
 	}

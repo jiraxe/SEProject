@@ -6,7 +6,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import swe425.project.MIUScheduler.model.Admin;
 import swe425.project.MIUScheduler.model.Faculty;
 import swe425.project.MIUScheduler.model.Student;
 import swe425.project.MIUScheduler.model.User;
@@ -29,23 +28,21 @@ public class UserController {
 
     @PostMapping(value = {"/login","/"})
     public String verify(@ModelAttribute("login") User login, HttpSession session){
-        User verifiedUser  = userService.verify(login);
-        if(verifiedUser == null){
+        User verified  = userService.verify(login);
+        if(verified == null){
             return "login";
         }
-        else if(verifiedUser instanceof Student){
+        else if(verified instanceof Student){
             session.setAttribute("role","student");
         }
-        else if(verifiedUser instanceof Faculty){
+        else if(verified instanceof Faculty){
             session.setAttribute("role","faculty");
         }
         else{
             session.setAttribute("role","admin");
         }
-        session.setAttribute("id", verifiedUser.getUserId());
+        session.setAttribute("userId", verified.getUserId());
         return "redirect:/home/index";
 
     }
-
-
 }
