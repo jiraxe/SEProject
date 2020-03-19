@@ -18,18 +18,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User verify(User user) {
-        List<User> accounts = userRepository.findAll();
-        for (User account : accounts) {
-            if(account.getUsername().equals(user.getUsername()) && account.getPassword().equals(user.getPassword())) {
-                return account;
-            }
-        }
-        return null;
+        return userRepository.searchUsers(user.getUsername(), user.getPassword());
     }
-
-//    @Override
-//    public void save(User User) {
-//        userRepository.save(User);
-//    }
-
 }
