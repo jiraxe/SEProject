@@ -64,7 +64,7 @@
         </tbody>
     </table>
     <div th:if="${#lists.size(student?.sections)< 1}">
-        Please <a th:href="@{'/student/register/' + ${student.studentId}}">register</a> your courses
+        Please <a th:href="@{'/student/register/' + ${student.userId}}">register</a> your courses
 
     </div>
 </div>

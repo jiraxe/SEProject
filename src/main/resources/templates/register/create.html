@@ -45,17 +45,33 @@
                         </div>
 
                 </div>
+                </div>
+                <div class="col-md-6" th:if="${prerequisites!=null}">
+                    <div style="float: right;position:fixed;right:10%;top:20%;">
+                        <label for="prerequisite" >You Have to take prerequisite course(s) needed to enroll in theose courses :</label>
+                <div th:each="prerequisite,itemStat : ${prerequisites}">
+
+                     <a id="prerequisite"  th:text="${prerequisite?.course.courseTitle}"></a>
+                    </br>
+                </div>
+                        <div >
+                            For more informations <a th:href="@{'/course/list/'}">check</a> prerequisites
+
+                        </div>
+            </div>
+</div>
+            </div>
                     <div class="col-md-6">
-                        <div style="float: right;">
+                        <div style="float: right;position:fixed;right:10%;top:80%;">
                             <button id="btnReset" type="reset" class="btn btn-outline-info"
                                     style="margin-right: 2em;">Reset</button>
-                            <a th:href="@{'/student/register/' + ${studentId}}" class="btn btn-outline-warning"
+                            <a th:href="@{'/student/register/list/' + ${studentId}}" class="btn btn-outline-warning"
                                style="margin-right: 2em;">Cancel</a>
                             <button id="btnSubmit" type="submit"
                                     class="btn btn-outline-primary"> Register</button>
                         </div>
                     </div>
-            </div>
+
             </div>
         </fieldset>
     </form>

@@ -12,19 +12,9 @@ import javax.validation.constraints.NotEmpty;
 public class Faculty extends  User{
 
 
-	@Column(unique = true)
-	private Long facultyId;
-
-	public Long getFacultyId() {
-		return facultyId;
-	}
-
-	public void setFacultyId(Long id) {
-		this.facultyId = id;
-	}
-	
 	public Faculty() {
-		
+		super();
+
 	}
 	
 	@Override
@@ -38,6 +28,7 @@ public class Faculty extends  User{
 		super(firstName, lastName, email);
 
 	}
+
 
 
 

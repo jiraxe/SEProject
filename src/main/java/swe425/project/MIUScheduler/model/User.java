@@ -6,9 +6,10 @@ import javax.validation.constraints.NotEmpty;
 
 
 @Entity
-public abstract class User {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public  class User {
 
-    @Id@GeneratedValue(strategy = GenerationType.AUTO)
+    @Id@GeneratedValue(strategy = GenerationType.TABLE)
     protected Long userId;
 
     public Long getUserId() {
@@ -21,16 +22,16 @@ public abstract class User {
 
     @Column(name = "first_name")
     @NotEmpty(message = "*Please provide first name")
-    protected String firstName;
+    public String firstName;
 
     @Column(name = "last_name")
     @NotEmpty(message = "*Please provide last name")
-    protected String lastName;
+    public String lastName;
 
     @Column(name = "email", unique = true)
     @Email(message = "*Please provide a valid Email")
     @NotEmpty(message = "*Please provide an email")
-    protected String email;
+    public String email;
 
     public String getFirstName() {
         return firstName;

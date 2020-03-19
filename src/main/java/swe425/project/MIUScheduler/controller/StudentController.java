@@ -83,7 +83,7 @@ public class StudentController {
 	}
 
 	@GetMapping("/register/{studentId}")
-	public String getScheduleForRegistration(@PathVariable Long studentId,Model model){
+	public String getScheduleForRegistration(@PathVariable Long studentId, Model model){
 		Student student = studentService.findOne(studentId);
 		if(student.getSections().size()>0)  return "register/list";
 		List<Block> blocks = blockService.findAll();
@@ -91,6 +91,8 @@ public class StudentController {
 		model.addAttribute("blocks", blocks);
 		model.addAttribute("schedule", schedule);
 		model.addAttribute("studentId",studentId);
+
+
 		return "register/create";
 
 	}
@@ -104,9 +106,15 @@ public class StudentController {
 		HashMap<String,List<Section>> results = this.studentService.register(student,schedule.getSections());
 
 		if (results.get("prerequisite").size()>1) {
-			model.addAttribute("errors", result.getAllErrors());
-			return "redirect:/student/register/"+studentId;
+			model.addAttribute("prerequisites", results.get("prerequisite"));
+			List<Block> blocks = blockService.findAll();
+			model.addAttribute("blocks", blocks);
+			model.addAttribute("schedule", new Schedule());
+			model.addAttribute("studentId",studentId);
+
+			return "register/create";
 		}
+
 		this.studentService.save(student);
 		return "redirect:/student/register/list/"+studentId;
 	}
