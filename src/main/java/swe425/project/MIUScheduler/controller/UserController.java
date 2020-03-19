@@ -29,19 +29,20 @@ public class UserController {
 
     @PostMapping(value = {"/login","/"})
     public String verify(@ModelAttribute("login") User login, HttpSession session){
-        User verified  = userService.verify(login);
-        if(verified == null){
+        User verifiedUser  = userService.verify(login);
+        if(verifiedUser == null){
             return "login";
         }
-        else if(verified instanceof Student){
+        else if(verifiedUser instanceof Student){
             session.setAttribute("role","student");
         }
-        else if(verified instanceof Faculty){
+        else if(verifiedUser instanceof Faculty){
             session.setAttribute("role","faculty");
         }
         else{
             session.setAttribute("role","admin");
         }
+        session.setAttribute("id", verifiedUser.getUserId());
         return "redirect:/home/index";
 
     }
