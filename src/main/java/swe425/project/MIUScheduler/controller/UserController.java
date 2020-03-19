@@ -30,6 +30,7 @@ public class UserController {
     @PostMapping(value = {"/login","/"})
     public String verify(@ModelAttribute("login") User login, HttpSession session){
         User verified  = userService.verify(login);
+       session.setAttribute("userId", verified.getUserId());
         if(verified == null){
             return "login";
         }
