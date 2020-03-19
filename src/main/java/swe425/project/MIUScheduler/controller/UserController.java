@@ -42,7 +42,7 @@ public class UserController {
         else{
             session.setAttribute("role","admin");
         }
-        return "redirect:/home/index"; //Student
+        return "redirect:/home/index";
 
     }
 
