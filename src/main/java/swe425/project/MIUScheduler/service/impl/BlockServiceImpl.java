@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import swe425.project.MIUScheduler.model.Block;
+import swe425.project.MIUScheduler.model.Section;
 import swe425.project.MIUScheduler.repo.BlockRepository;
 import swe425.project.MIUScheduler.service.BlockService;
 
@@ -35,6 +36,13 @@ public class BlockServiceImpl implements BlockService {
 	@Override
 	public void delete(Integer id) {
 		blockRepository.deleteById(id);
+	}
+
+	@Override
+	public List<Block> findAvailableSections()
+	{
+		return this.blockRepository.findAvailableBlocks();
+
 	}
 
 }

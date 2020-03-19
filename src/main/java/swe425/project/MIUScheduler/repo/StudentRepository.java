@@ -7,6 +7,6 @@ import swe425.project.MIUScheduler.model.Student;
 
 
 
-@Repository("studentRepository")
+@Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
 }

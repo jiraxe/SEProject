@@ -36,7 +36,7 @@
 					<th scope="col">Block</th>
 					<th scope="col">Location</th>
 					<th scope="col">Faculty</th>
-		
+					<th scope="col">Capacity</th>
 					<th scope="col">Actions</th>
 
 				</tr>
@@ -52,10 +52,11 @@
 					th:onclick="@{document.location='/section/{sectionId}'(sectionId=${section.sectionId})}">
 					<!--                <tr class="datarow" th:each="section,iterStat : ${sections}" th:onclick="@{document.location='#'}">-->
 					<th scope="row" th:text="${iterStat.count}+'.'">#</th>
-					<td th:text="${section.course}"></td>
-					<td th:text="${section.block}"></td>
-					<td th:text="${section.location}"></td>
-					<td th:text="${section.faculty}"></td>
+					<td th:text="${section?.course.courseTitle}"></td>
+					<td th:text="${section?.block.blockTittle}"></td>
+					<td th:text="${section?.location.building+' '+section?.location.roomNumber}"></td>
+					<td th:text="${section?.faculty.firstName}"></td>
+					<td th:text="${section.capacity}"></td>
 
 
 					<td><a th:href="@{'/section/' + ${section.sectionId}}">Edit</a>&nbsp;

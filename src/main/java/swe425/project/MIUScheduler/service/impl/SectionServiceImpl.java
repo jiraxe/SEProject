@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
 import swe425.project.MIUScheduler.model.Section;
@@ -20,8 +22,13 @@ public class SectionServiceImpl implements SectionService {
 	
 	@Override
 	public List<Section> findAll() {
-		return sectionRepository.findAll();
+		List<Section> s= sectionRepository.findAll();
+		s.sort((s1,s2)->s1.getBlock().getBlockTitle().compareTo(s2.getBlock().getBlockTitle()));
+	    return s ;
+
 	}
+
+
 
 	@Override
 	public Section save(Section section) {

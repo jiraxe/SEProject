@@ -17,6 +17,9 @@
 <span th:if="${faculty}">
     <div th:replace="fragments/headerFaculty :: header"></div>
 </span>
+<span th:if="${student}">
+    <div th:replace="fragments/headerStudent :: header"></div>
+</span>
 <span th:if="${admin}">
     <div th:replace="fragments/header :: header"></div>
 </span>
