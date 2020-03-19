@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +50,7 @@ public class StudentController {
 		modelAndView.addObject("students", students);
 		modelAndView.addObject("size", students.size());
 		modelAndView.setViewName("student/list");
+
 		return modelAndView;
 	}
 
@@ -120,10 +122,19 @@ public class StudentController {
 	}
 
 	@GetMapping(value = "/register/list/{studentId}")
-	public String showEnrolledSections(@PathVariable Long studentId,Model model) {
+	public String showEnrolledSections(@PathVariable Long studentId,Model model,HttpSession session) {
 		Student student = this.studentService.findOne(studentId);
 		model.addAttribute("student",student);
-
+		if (session.getAttribute("role") =="student")
+		{
+			model.addAttribute("studentrole",true);
+		}
+		else if (session.getAttribute("role") =="faculty"){
+			model.addAttribute("facultyrole",true);
+		}
+		else{
+			model.addAttribute("adminrole",true);
+		}
 	return "register/list";
 	}
 }

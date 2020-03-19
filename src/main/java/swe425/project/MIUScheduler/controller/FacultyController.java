@@ -50,15 +50,22 @@ public class FacultyController {
 		model.addAttribute("faculty", new Faculty());
 		return "faculty/new";
 	}
-
+	@RequestMapping(value = "/faculty/success", method = RequestMethod.GET )
+	public String success(Model model) {
+		return "faculty/success";
+	}
 	@RequestMapping(value = "/faculty/new", method = RequestMethod.POST)
-	public String edit(@Valid @ModelAttribute("faculty") Faculty faculty, BindingResult result, Model model) {
+	public String edit(@Valid @ModelAttribute("faculty") Faculty faculty, BindingResult result, Model model, HttpSession session) {
 
 		if (result.hasErrors()) {
 			model.addAttribute("errors", result.getAllErrors());
 			return "faculty/new";
 		}
 		faculty = facultyService.save(faculty);
+		if (session.getAttribute("role") =="faculty"){
+			return "redirect:/faculty/success";
+		}
+		else
 		return "redirect:/faculty/list";
 	}
 

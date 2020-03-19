@@ -18,59 +18,15 @@
 <title>MIU Scheduler</title>
 </head>
 <body>
-	<div th:replace="fragments/header :: header"></div>
+    <div th:replace="fragments/headerFaculty :: header"></div>
 
 	<div class="container" style="margin-top: 2em;">
-		<form id="facultyForm" method="post" action="/faculty/new"
-			th:object="${faculty}">
-			<fieldset>
-				<legend>New Faculty Form</legend>
-				<div class="container" style="margin-top: 1em;">
-					<div class="row">
-						<div class="col-md-6">
-							<input type="hidden" name="userId" th:value="${faculty.userId}" />
-							<div class="form-group">
-								<label for="firstName">firstName</label> <small><span
-									th:if="${#fields.hasErrors('firstName')}"
-									th:errors="*{firstName}" class="alert alert-danger"></span></small> <input
-									id="firstName" name="firstName" type="text"
-									class="form-control" th:value="${faculty.firstName}" required
-									autofocus="autofocus">
-							</div>
-							<div class="form-group">
-								<label for="lastName">LastName</label> <span
-									th:if="${#fields.hasErrors('lastName')}"
-									th:errors="*{lastName}" class="alert alert-danger"></span> <input
-									id="lastName" name="lastName" type="text" class="form-control"
-									th:value="${faculty.lastName}" required="required">
-							</div>
-							<div class="form-group">
-								<label for="email">email</label> <span
-									th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
-									class="alert alert-danger"></span> <input id="email"
-									name="email" type="text" class="form-control"
-									th:value="${faculty.email}">
-
-							</div>
-
-						</div>
-						<div class="col-md-6">
-
-
-
-							<div style="float: right;">
-								<button id="btnReset" type="reset" class="btn btn-outline-info"
-									style="margin-right: 2em;">Reset</button>
-								<a href="/faculty/list" class="btn btn-outline-warning"
-									style="margin-right: 2em;">Cancel</a>
-								<button id="btnSubmit" type="submit"
-									class="btn btn-outline-primary">Add Faculty</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</fieldset>
-		</form>
+		<div>
+			<span style="font-size: 1.5em">Thanks!! Your data saved successfully</span> <span
+				style="float: right;">
+			</span>
+		</div>
+		<p>&nbsp;</p>
 	</div>
 
 	<div th:replace="fragments/footer :: footer"></div>
