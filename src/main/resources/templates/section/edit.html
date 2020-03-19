@@ -50,8 +50,8 @@
 									th:if="${#fields.hasErrors('block')}"
 									th:errors="*{block}" class="alert alert-danger"></span> <select name="block" id="block" class="form-control" required="required">
                                     <option value="">Select a block</option>
-                                    <option th:if="${section.block == null}" th:each="block : ${blocks}" th:value="${block.blockId}" th:text="${block.start_date}"></option>
-                                    <option th:if="${section.block != null}" th:each="block : ${blocks}" th:value="${block.blockId}" th:text="${block.start_date}" th:selected="${block.blockId == section.block.blockId}"></option>
+                                    <option th:if="${section.block == null}" th:each="block : ${blocks}" th:value="${block.blockId}" th:text="${block.blockTitle}"></option>
+                                    <option th:if="${section.block != null}" th:each="block : ${blocks}" th:value="${block.blockId}" th:text="${block.blockTitle}" th:selected="${block.blockId == section.block.blockId}"></option>
                                 </select>
 							</div>
 							

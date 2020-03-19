@@ -10,12 +10,12 @@ import javax.validation.constraints.NotEmpty;
 
 
 @Entity
-
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+//@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public  class User {
 
     public static User currentUser;
-    @Id@GeneratedValue(strategy = GenerationType.TABLE)
+
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     protected Long userId;
     public Long getUserId() {
         return userId;
