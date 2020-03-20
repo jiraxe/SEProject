@@ -16,32 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `admin`
---
-
-DROP TABLE IF EXISTS `admin`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `admin` (
-  `user_id` bigint(20) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `UK_c0r9atamxvbhjjvy5j8da1kam` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `admin`
---
-
-LOCK TABLES `admin` WRITE;
-/*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-/*!40000 ALTER TABLE `admin` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `block`
 --
 
@@ -65,7 +39,7 @@ CREATE TABLE `block` (
 
 LOCK TABLES `block` WRITE;
 /*!40000 ALTER TABLE `block` DISABLE KEYS */;
-INSERT INTO `block` VALUES (1,'January 2020','2020-01-25','2020-01-05'),(2,'February 2020','2020-02-25','2020-02-05'),(3,'March 2020','2020-03-25','2020-03-05'),(4,'April 2020','2020-04-25','2020-04-05'),(5,'May 2020','2020-05-25','2020-05-05');
+INSERT INTO `block` VALUES (1,'March 2020','2020-03-31','2020-03-01'),(2,'April 2020','2020-04-30','2020-04-01'),(3,'May 2020','2020-05-31','2020-05-01'),(4,'June 2020','2020-06-30','2020-06-01'),(5,'July 2020','2020-07-31','2020-07-01');
 /*!40000 ALTER TABLE `block` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +57,7 @@ CREATE TABLE `course` (
   PRIMARY KEY (`course_id`),
   KEY `FK4kihdg8vnj8lvgrkwra63tsuw` (`prerequisite_course_id`),
   CONSTRAINT `FK4kihdg8vnj8lvgrkwra63tsuw` FOREIGN KEY (`prerequisite_course_id`) REFERENCES `course` (`course_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,35 +66,8 @@ CREATE TABLE `course` (
 
 LOCK TABLES `course` WRITE;
 /*!40000 ALTER TABLE `course` DISABLE KEYS */;
-INSERT INTO `course` VALUES (1,'Enterprise Architecture',2),(2,'Software Engineering',NULL),(3,'Web Application Architecture',NULL),(4,'Modern Web Applications',NULL),(5,'Operating Systems',8),(6,'Algorithms',NULL),(7,'Big Data',6),(8,'Database Management Systems',NULL);
+INSERT INTO `course` VALUES (1,'Enterprise Architecture',2),(2,'Software Engineering',NULL),(3,'Web Application Architecture',NULL),(4,'Modern Web Applications',7),(5,'Algorithms',NULL),(6,'Operating Systems',NULL),(7,'web programming',NULL);
 /*!40000 ALTER TABLE `course` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `faculty`
---
-
-DROP TABLE IF EXISTS `faculty`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `faculty` (
-  `user_id` bigint(20) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `UK_eivw7fxg6ss3qdh80ew3ol3u9` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `faculty`
---
-
-LOCK TABLES `faculty` WRITE;
-/*!40000 ALTER TABLE `faculty` DISABLE KEYS */;
-INSERT INTO `faculty` VALUES (2,'mnaraghi@mum.edu','Maryam','Naraghi'),(3,'oKalu@miu.eduo','Obinna','Kalu'),(4,'jbruen@miu.edu','Joe ','Bruen'),(5,'psalek@miu.edu','Payman','Salek'),(6,'klevi@miu.edu','Keith','Levi');
-/*!40000 ALTER TABLE `faculty` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -141,32 +88,8 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (12),(12),(12),(12);
+INSERT INTO `hibernate_sequence` VALUES (19),(19),(19),(19);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `hibernate_sequences`
---
-
-DROP TABLE IF EXISTS `hibernate_sequences`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hibernate_sequences` (
-  `sequence_name` varchar(255) NOT NULL,
-  `next_val` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`sequence_name`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `hibernate_sequences`
---
-
-LOCK TABLES `hibernate_sequences` WRITE;
-/*!40000 ALTER TABLE `hibernate_sequences` DISABLE KEYS */;
-INSERT INTO `hibernate_sequences` VALUES ('default',6);
-/*!40000 ALTER TABLE `hibernate_sequences` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -190,7 +113,7 @@ CREATE TABLE `location` (
 
 LOCK TABLES `location` WRITE;
 /*!40000 ALTER TABLE `location` DISABLE KEYS */;
-INSERT INTO `location` VALUES (1,'Verill Hall','101'),(2,'Verill hall','102'),(3,'Verill hall','103'),(4,'Verill Hall','104'),(5,'Verill Hall','105');
+INSERT INTO `location` VALUES (1,'Verill Hall','104'),(2,'Verill Hall','102'),(3,'macklavin  building','101'),(4,'Verill Hall building','105'),(5,'dalby Hall','106');
 /*!40000 ALTER TABLE `location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,11 +182,11 @@ CREATE TABLE `section` (
   PRIMARY KEY (`section_id`),
   KEY `FKtre870d3wimrydxurvxuqosfg` (`block_block_id`),
   KEY `FKcaob2rpl5w0q76503ake08qdn` (`course_course_id`),
-  KEY `FKrwvv5o1y3qsknxbhlnp196l6` (`faculty_user_id`),
+  KEY `FKcegtikw85yej0ndkpu2ldh6mv` (`faculty_user_id`),
   KEY `FKcydvhfhjjvyllkeng2q0ecf6v` (`location_location_id`),
   CONSTRAINT `FKcaob2rpl5w0q76503ake08qdn` FOREIGN KEY (`course_course_id`) REFERENCES `course` (`course_id`),
+  CONSTRAINT `FKcegtikw85yej0ndkpu2ldh6mv` FOREIGN KEY (`faculty_user_id`) REFERENCES `user` (`user_id`),
   CONSTRAINT `FKcydvhfhjjvyllkeng2q0ecf6v` FOREIGN KEY (`location_location_id`) REFERENCES `location` (`location_id`),
-  CONSTRAINT `FKrwvv5o1y3qsknxbhlnp196l6` FOREIGN KEY (`faculty_user_id`) REFERENCES `faculty` (`user_id`),
   CONSTRAINT `FKtre870d3wimrydxurvxuqosfg` FOREIGN KEY (`block_block_id`) REFERENCES `block` (`block_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -274,63 +197,8 @@ CREATE TABLE `section` (
 
 LOCK TABLES `section` WRITE;
 /*!40000 ALTER TABLE `section` DISABLE KEYS */;
-INSERT INTO `section` VALUES (6,50,1,1,5,1),(7,50,2,2,3,2),(8,50,3,3,4,2),(9,50,4,7,6,5);
+INSERT INTO `section` VALUES (6,50,1,2,10,1),(7,49,2,5,12,3),(8,50,3,6,14,2),(9,49,4,4,13,4),(10,50,5,6,12,2),(11,50,1,1,11,2),(12,49,3,2,12,2),(13,49,1,7,13,4),(14,50,1,4,11,5),(15,50,2,3,10,4),(16,50,1,5,14,5),(17,50,2,6,12,1),(18,50,3,7,10,1);
 /*!40000 ALTER TABLE `section` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `student`
---
-
-DROP TABLE IF EXISTS `student`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `student` (
-  `user_id` bigint(20) NOT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `student_id` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`user_id`),
-  UNIQUE KEY `UK_fe0i52si7ybu0wjedj6motiim` (`email`),
-  UNIQUE KEY `UK_lh7am6sc9pv0nhyg7qkj7w5d3` (`student_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `student`
---
-
-LOCK TABLES `student` WRITE;
-/*!40000 ALTER TABLE `student` DISABLE KEYS */;
-INSERT INTO `student` VALUES (1,'Ojablaoui@miu.edu','Oussama','Jablaoui',NULL);
-/*!40000 ALTER TABLE `student` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `student_section`
---
-
-DROP TABLE IF EXISTS `student_section`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `student_section` (
-  `students_user_id` bigint(20) NOT NULL,
-  `sections_section_id` int(11) NOT NULL,
-  KEY `FKo9coxhtqja2vdl7i49wgvxlmn` (`sections_section_id`),
-  KEY `FKk7ibo2swvej93m8bavj6fdlmg` (`students_user_id`),
-  CONSTRAINT `FKk7ibo2swvej93m8bavj6fdlmg` FOREIGN KEY (`students_user_id`) REFERENCES `student` (`user_id`),
-  CONSTRAINT `FKo9coxhtqja2vdl7i49wgvxlmn` FOREIGN KEY (`sections_section_id`) REFERENCES `section` (`section_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `student_section`
---
-
-LOCK TABLES `student_section` WRITE;
-/*!40000 ALTER TABLE `student_section` DISABLE KEYS */;
-/*!40000 ALTER TABLE `student_section` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -413,13 +281,18 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `user_id` bigint(20) NOT NULL,
+  `dtype` varchar(31) NOT NULL,
+  `user_id` bigint(20) NOT NULL AUTO_INCREMENT,
   `email` varchar(255) DEFAULT NULL,
   `first_name` varchar(255) DEFAULT NULL,
   `last_name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `student_id` bigint(20) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
-  UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  UNIQUE KEY `UK_ob8kqyqqgmefl0aco34akdtpe` (`email`),
+  UNIQUE KEY `UK_i1pkkkteed13wt581o8vanlx8` (`student_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -428,7 +301,35 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('Admin',1,'oussamajablaoui@gmail.com','Oussama','Jablaoui','$2a$10$v/lnBWWagTKfdCJ.faLpI.upnKRJRpwjpLzEPf1ZYLdRiILntaYCO','admin',NULL),('Student',2,'asobhi@miu.edu','Abanoub','Kaiser','$2a$10$Gszf9C.dowVMsHyAntuv9eMwPBdXwl/bLvVC42xn4.F7rmI44cJRO','abanoub',NULL),('Student',4,'oussamajablaoui@mum.edu','oussama','jablaoui','$2a$10$ckQ3vAuKRPW.rZUMiNJ82Ox2j8Nuv1GXD5Xnp46X/3P4xz7UklWaC','jiraxe',NULL),('Faculty',10,'OKalu@miu.edu','Obinna','Kalu','$2a$10$q.lkyc8KobD40K4UwVVMQOMGarBtTUsCDYs5Cxc6J91bFSXvpZoJS','Kalu',NULL),('Faculty',11,'a.saad@miu.edu','Amine','Saad','$2a$10$mVeTzdKkE./BlemfT2lokuL87NMqodrdqHt4cd8dXVmM/qtv2AYRC','Saad',NULL),('Faculty',12,'ruby@gmail.com','Keith','Ruby','$2a$10$PxYuzciwDCXrTeoW.brA9.h8sUmiH9/hNSKqQrF6B5oNbbUF1.1Ra','ruby',NULL),('Faculty',13,'a.saad2@miu.edu','Asaad','Saad','$2a$10$qLlEYold2kmn4iAh1LAcpeG7//Kf2jbzaMgZaIxGS5CNMZ1VYJzz6','Assad',NULL),('Faculty',14,'oliver@gmail.com','oliver','bob','$2a$10$/CQfAf0zKwVhxrUH.KSrCuklOhlb0f7pkX0ao2oPGc8k3QpDSLRyC','oliver',NULL),('Student',15,'mark@mum.edu','mark','Ghatas','$2a$10$y5F1PKkF3vIxVYB7r8ewxuw324ScWY89NLF7BIHIWgkW0aK3r7Z8S','mark',NULL),('Student',16,'adhamMohamed@miu.edu','Adham','ahmed','$2a$10$k/kPX5gAL2U2MwDj867Vy.jOUBgDHQRyFcU5wwEiTXCvn8YGSf.9u','adham',NULL);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user_section`
+--
+
+DROP TABLE IF EXISTS `user_section`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user_section` (
+  `students_user_id` bigint(20) NOT NULL,
+  `sections_section_id` int(11) NOT NULL,
+  KEY `FKgqypo6c13wpelua9badx1pqy9` (`sections_section_id`),
+  KEY `FKfu5o8om7cw6abrjxte2qc1pll` (`students_user_id`),
+  CONSTRAINT `FKfu5o8om7cw6abrjxte2qc1pll` FOREIGN KEY (`students_user_id`) REFERENCES `user` (`user_id`),
+  CONSTRAINT `FKgqypo6c13wpelua9badx1pqy9` FOREIGN KEY (`sections_section_id`) REFERENCES `section` (`section_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user_section`
+--
+
+LOCK TABLES `user_section` WRITE;
+/*!40000 ALTER TABLE `user_section` DISABLE KEYS */;
+INSERT INTO `user_section` VALUES (15,13),(15,7),(15,12),(15,9),(15,10);
+/*!40000 ALTER TABLE `user_section` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -440,4 +341,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-18 23:33:59
+-- Dump completed on 2020-03-19 20:54:01
