@@ -1,0 +1,5 @@
+1- all the users in the database has the same password "0000"
+2- we have to roles (admin) username : "admin" password : "0000"
+3- student "mark" with password "0000" already registerd his courses. 
+4- we have student with usernames "abanoub" , "oussama", "adham" all with password "0000" still can register thier courses.
+5- role Faculty username kalu password 0000
