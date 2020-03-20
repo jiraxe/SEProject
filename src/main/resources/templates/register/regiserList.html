@@ -18,7 +18,7 @@
     <title>MIU Sectionr</title>
 </head>
 <body>
-<div th:replace="fragments/headerStudent :: header"></div>
+<div th:replace="fragments/header :: header"></div>
 
 <div class="container" style="margin-top: 2em;">
     <form id="sectionForm" method="POST" th:action="@{'/student/register/' + ${studentId}}" th:object="${schedule}">

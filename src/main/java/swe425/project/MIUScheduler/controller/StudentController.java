@@ -65,7 +65,7 @@ public class StudentController {
 	@PostMapping("/new")
 	public String edit(@Valid @ModelAttribute("student") Student student, BindingResult result, Model model) {
 
-		
+
 		if (result.hasErrors()) {
 			model.addAttribute("errors", result.getAllErrors());
 			return "student/new";
@@ -111,7 +111,7 @@ public class StudentController {
 		model.addAttribute("student",student);
 		HashMap<String,List<Section>> results = this.studentService.register(student,schedule.getSections());
 
-		if (results.get("prerequisite").size()>1) {
+		if (results.get("prerequisite").size()>0) {
 			model.addAttribute("prerequisites", results.get("prerequisite"));
 			List<Block> blocks = blockService.findAll();
 			model.addAttribute("blocks", blocks);

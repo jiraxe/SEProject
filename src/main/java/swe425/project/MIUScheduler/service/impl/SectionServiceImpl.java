@@ -23,7 +23,7 @@ public class SectionServiceImpl implements SectionService {
 	@Override
 	public List<Section> findAll() {
 		List<Section> s= sectionRepository.findAll();
-		s.sort((s1,s2)->s1.getBlock().getBlockTitle().compareTo(s2.getBlock().getBlockTitle()));
+		//s.sort((s1,s2)->s1.getBlock().getBlockTitle().compareTo(s2.getBlock().getBlockTitle()));
 	    return s ;
 
 	}
