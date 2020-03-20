@@ -73,4 +73,12 @@ public class StudentServiceImpl implements StudentService {
 		return infos;
 	}
 
+	@Override
+	public boolean isAlreadySaved(String email) {
+
+		if(this.studentRepository.findByEmail(email)==null)
+			return false;
+		else return true;
+	}
+
 }

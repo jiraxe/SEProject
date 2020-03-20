@@ -55,7 +55,8 @@ public  class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        BCryptPasswordEncoder BCryptPasswordEncoder = new BCryptPasswordEncoder();
+        this.password = BCryptPasswordEncoder.encode(password);
     }
 
     public String getFirstName() {
@@ -94,8 +95,7 @@ public  class User {
         this.password = password;
     }
     public User(){
-        BCryptPasswordEncoder BCryptPasswordEncoder = new BCryptPasswordEncoder();
-        this.password = BCryptPasswordEncoder.encode("123");
+
 
     }
 

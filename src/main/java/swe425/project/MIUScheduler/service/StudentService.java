@@ -13,4 +13,5 @@ public interface StudentService {
 	 Student findOne(Long id);
 	 void delete(Long id);
 	HashMap<String, List<Section>> register(Student student, List<Section> sectionList);
+    boolean isAlreadySaved(String email);
 }
